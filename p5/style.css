@@ -1,0 +1,69 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.d-flex {
+    display: flex;
+    gap: 5px;
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Style for the footer container */
+footer {
+    z-index: 1;
+    background-color: #f8f8f8;
+    /* padding: 10px; */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid #ddd;
+    width: 100%;
+}
+
+footer div {
+    max-width: 500px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* Style for each item in the footer */
+.d-flex {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Style for the text labels (Resolution and Threshold) */
+p {
+    margin: 0;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Style for the buttons */
+.btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+}
+
+input[type='file'] {
+    margin-bottom: 5px;
+}
+input[type='range'] {
+    width: 100%;
+}

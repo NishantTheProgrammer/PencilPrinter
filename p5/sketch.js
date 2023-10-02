@@ -1,25 +1,26 @@
 let threshold, resolution, canvas, capture;
 
-
 const minResolution = 20;
 const maxResolution = 100;
+let front = true; // Variable to keep track of camera selection
+
 function setup() {
-    threshold = createSlider(0, 255, 127).parent('threshold'); // Corrected range from 0-255
-    resolution = createSlider(minResolution, maxResolution, 70).parent('resolution'); // Adjusted range and default value
+    threshold = createSlider(0, 255, 127).parent('threshold');
+    resolution = createSlider(minResolution, maxResolution, 70).parent('resolution');
     canvas = createCanvas(400, 600).parent('canvas');
-    capture = createCapture(VIDEO).parent('capture');
-    capture.size(width, height);
-    capture.hide();
+
+    initCapture();
+    
+    let switchCameraButton = document.getElementById('switchCamera');
+    switchCameraButton.addEventListener('click', switchCamera);
 }
 
 function draw() {
-    background(255); // Set background to white
-    capture.loadPixels(); // Load pixels from the video capture
+    background(255);
+    capture.loadPixels();
 
     let thresholdValue = threshold.value();
     let resolutionValue = round(map(resolution.value(), minResolution, maxResolution, width / minResolution, width / maxResolution));
-
-
 
     for (let y = 0; y < height; y += resolutionValue) {
         for (let x = 0; x < width; x += resolutionValue) {
@@ -35,4 +36,23 @@ function draw() {
             ellipse(x, y, resolutionValue, resolutionValue);
         }
     }
+}
+
+function initCapture() {
+    if (capture) {
+        capture.stop();
+        capture.remove();
+    }
+    capture = createCapture({
+        video: {
+            facingMode: front ? 'user' : 'environment'
+        }
+    }).parent('capture');
+    capture.size(width, height);
+    capture.hide();
+}
+
+function switchCamera() {
+    front = !front;
+    initCapture();
 }
