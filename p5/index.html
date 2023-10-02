@@ -26,11 +26,15 @@
             <div id="threshold"></div>
         </div>
         <div class="d-flex">
-            <input class="btn" accept="image/*" type="file" id="fileUpload">
+            <div id="fileInput" class="btn" onclick="hiddenInputTag.click();">Upload file</div>
+            <button id="clearImage" class="btn capture" onclick="uploadedImage = null;">Clear Image </button>
         </div>
         <div class="d-flex">
             <button class="btn" id="switchCamera">Switch camera🔄</button>
             <button class="btn capture">Take 📷</button>
+        </div>
+        <div class="d-flex">
+            <button class="btn" id="print">Print</button>
         </div>
     </footer>
 </body>

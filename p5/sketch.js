@@ -20,8 +20,8 @@ function setup() {
     threshold = createSlider(0, 255, 127).parent('threshold');
     resolution = createSlider(minResolution, maxResolution, 70).parent('resolution');
     canvas = createCanvas(400, 600).parent('canvas');
-    fileInput = createFileInput(handleFile);
-    // fileInput.parent('fileUpload');
+    fileInput = createFileInput(handleFile).parent('fileInput');
+    fileInput.attribute('id', 'hiddenInputTag');
     
     initCapture();
 

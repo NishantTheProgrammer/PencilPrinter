@@ -61,9 +61,18 @@ p {
     width: 100%;
 }
 
-input[type='file'] {
-    margin-bottom: 5px;
+#fileInput input {
+    display: none;
 }
+
 input[type='range'] {
     width: 100%;
+}
+
+#clearImage {
+    background-color: red;
+}
+
+#print {
+    background-color: rgb(37, 177, 37);
 }
