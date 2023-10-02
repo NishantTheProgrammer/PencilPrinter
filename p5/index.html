@@ -27,14 +27,14 @@
         </div>
         <div class="d-flex">
             <div id="fileInput" class="btn" onclick="hiddenInputTag.click();">Upload file</div>
-            <button id="clearImage" class="btn capture" onclick="uploadedImage = null; taken = false;">Clear Image </button>
+            <button id="clearImage" class="btn capture" onclick="onClear()">Clear Image </button>
         </div>
         <div class="d-flex">
             <button class="btn" id="switchCamera">Switch camera🔄</button>
             <button class="btn capture" onclick="taken = true">Take 📷</button>
         </div>
         <div class="d-flex">
-            <button class="btn" id="printBtn">Print</button>
+            <button class="btn" id="printBtn" onclick="onPrint()">Print</button>
         </div>
     </footer>
 </body>
