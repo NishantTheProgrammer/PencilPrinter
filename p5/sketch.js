@@ -3,6 +3,7 @@ let threshold, resolution, canvas, capture, fileInput, uploadedImage;
 const minResolution = 20;
 const maxResolution = 100;
 let front = true; // Variable to keep track of camera selection
+let taken = false;
 
 function handleFile(file) {
 
@@ -31,6 +32,8 @@ function setup() {
 
 function draw() {
     background(255);
+    printBtn.disabled = !(taken || uploadedImage);
+    
     
     let source;
     if (uploadedImage) {
@@ -39,7 +42,10 @@ function draw() {
     } else {
         source = capture;
     }
-    source.loadPixels();
+    if(!taken) {
+        source.loadPixels();
+    }
+
 
     let thresholdValue = threshold.value();
     let resolutionValue = round(map(resolution.value(), minResolution, maxResolution, width / minResolution, width / maxResolution));

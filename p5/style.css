@@ -73,6 +73,13 @@ input[type='range'] {
     background-color: red;
 }
 
-#print {
+
+#printBtn {
     background-color: rgb(37, 177, 37);
+}
+
+.btn:disabled {
+    background-color: #ccc !important;
+    color: #666;
+    cursor: not-allowed;
 }
