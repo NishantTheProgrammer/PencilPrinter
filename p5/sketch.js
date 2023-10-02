@@ -1,31 +1,54 @@
-let threshold, resolution, canvas, capture;
+let threshold, resolution, canvas, capture, fileInput, uploadedImage;
 
 const minResolution = 20;
 const maxResolution = 100;
 let front = true; // Variable to keep track of camera selection
 
+function handleFile(file) {
+
+    console.log(file)
+    if (file.type === 'image') {
+        uploadedImage = loadImage(file.data);
+    } else {
+        console.error('Invalid file type. Please upload an image.');
+    }
+}
+
+
+
 function setup() {
     threshold = createSlider(0, 255, 127).parent('threshold');
     resolution = createSlider(minResolution, maxResolution, 70).parent('resolution');
     canvas = createCanvas(400, 600).parent('canvas');
-
-    initCapture();
+    fileInput = createFileInput(handleFile);
+    // fileInput.parent('fileUpload');
     
+    initCapture();
+
     let switchCameraButton = document.getElementById('switchCamera');
     switchCameraButton.addEventListener('click', switchCamera);
 }
 
 function draw() {
     background(255);
-    capture.loadPixels();
+    
+    let source;
+    if (uploadedImage) {
+        source = uploadedImage;
+        source.resize(width, height);
+    } else {
+        source = capture;
+    }
+    source.loadPixels();
 
     let thresholdValue = threshold.value();
     let resolutionValue = round(map(resolution.value(), minResolution, maxResolution, width / minResolution, width / maxResolution));
 
+
     for (let y = 0; y < height; y += resolutionValue) {
         for (let x = 0; x < width; x += resolutionValue) {
             let loc = (x + y * width) * 4;
-            let bright = (capture.pixels[loc] + capture.pixels[loc + 1] + capture.pixels[loc + 2]) / 3;
+            let bright = (source.pixels[loc] + source.pixels[loc + 1] + capture.pixels[loc + 2]) / 3;
 
             if (bright > thresholdValue) {
                 fill(255);
